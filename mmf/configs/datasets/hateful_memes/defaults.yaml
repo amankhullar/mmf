@@ -8,13 +8,13 @@ dataset_config:
     images:
       train:
       # - hateful_memes/defaults/images/
-      - /content/drive/MyDrive/GaTech/HateSpeechDetection/hateful_memes/img
+      - /content/drive/MyDrive/GaTech/HateSpeechDetection/hateful_memes/
       val:
       # - hateful_memes/defaults/images/
-      - /content/drive/MyDrive/GaTech/HateSpeechDetection/hateful_memes/img
+      - /content/drive/MyDrive/GaTech/HateSpeechDetection/hateful_memes/
       test:
       # - hateful_memes/defaults/images/
-      - /content/drive/MyDrive/GaTech/HateSpeechDetection/hateful_memes/img
+      - /content/drive/MyDrive/GaTech/HateSpeechDetection/hateful_memes/
     features:
       train:
       - hateful_memes/defaults/features/detectron.lmdb
