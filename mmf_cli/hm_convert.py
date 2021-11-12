@@ -8,7 +8,8 @@ import warnings
 import zipfile
 
 from mmf.utils.configuration import Configuration
-from mmf.utils.download import copy, decompress, move
+# from mmf.utils.download import copy, decompress, move
+from mmf.utils.download import decompress, move
 from mmf.utils.file_io import PathManager
 
 
