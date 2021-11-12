@@ -49,7 +49,7 @@ class HMConverter:
         if not phase_one:
             files_needed = self.JSONL_PHASE_TWO_FILES
             for file in files_needed:
-                assert PathManager.exists(
+                assert os.path.exists(
                     os.path.join(folder, "hateful_memes", file)
                 ), f"{file} doesn't exist in {folder}"
         else:
