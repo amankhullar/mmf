@@ -80,7 +80,7 @@ class HMConverter:
         )
 
         parser.add_argument(
-            "--password", required=True, type=str, help="Password for the zip file"
+            "--password", required=False, type=str, help="Password for the zip file"
         )
         parser.add_argument(
             "--move", required=None, type=int, help="Move data dir to mmf cache dir"
@@ -103,7 +103,7 @@ class HMConverter:
         if self.args.mmf_data_folder:
             data_dir = self.args.mmf_data_folder
 
-        bypass_checksum = False
+        bypass_checksum = True
         if self.args.bypass_checksum:
             bypass_checksum = bool(self.args.bypass_checksum)
 
@@ -132,8 +132,12 @@ class HMConverter:
             copy(src, dest)
 
         print(f"Unzipping {src}")
+        # self.decompress_zip(
+        #     dest, fname=os.path.basename(src), password=self.args.password
+        # )
+        
         self.decompress_zip(
-            dest, fname=os.path.basename(src), password=self.args.password
+            dest, fname=os.path.basename(src), password=None
         )
 
         phase_one = self.assert_files(images_path)
