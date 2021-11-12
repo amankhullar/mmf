@@ -41,7 +41,7 @@ class HMConverter:
         for file in files_needed:
             try:
                 assert PathManager.exists(
-                    os.path.join(folder, "data", file)
+                    os.path.join(folder, "hateful_memes", file)
                 ), f"{file} doesn't exist in {folder}"
             except AssertionError:
                 phase_one = False
@@ -50,7 +50,7 @@ class HMConverter:
             files_needed = self.JSONL_PHASE_TWO_FILES
             for file in files_needed:
                 assert PathManager.exists(
-                    os.path.join(folder, "data", file)
+                    os.path.join(folder, "hateful_memes", file)
                 ), f"{file} doesn't exist in {folder}"
         else:
             warnings.warn(
@@ -63,7 +63,7 @@ class HMConverter:
         exists = False
 
         for file in files_needed:
-            exists = exists or PathManager.exists(os.path.join(folder, "data", file))
+            exists = exists or PathManager.exists(os.path.join(folder, "hateful_memes", file))
 
         if not exists:
             raise AssertionError("Neither img or img.tar.gz exists in current zip")
@@ -154,14 +154,14 @@ class HMConverter:
 
         for annotation in annotations:
             print(f"Moving {annotation}")
-            src = os.path.join(images_path, "data", annotation)
+            src = os.path.join(images_path, "hateful_memes", annotation)
             dest = os.path.join(annotations_path, annotation)
             move(src, dest)
 
         images = self.IMAGE_FILES
 
         for image_file in images:
-            src = os.path.join(images_path, "data", image_file)
+            src = os.path.join(images_path, "hateful_memes", image_file)
             if PathManager.exists(src):
                 print(f"Moving {image_file}")
             else:
