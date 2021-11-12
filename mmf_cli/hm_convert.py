@@ -129,13 +129,14 @@ class HMConverter:
             move(src, dest)
         else:
             print(f"Copying {src}")
-            copy(src, dest)
+            # copy(src, dest)
+            os.system("cp -r {} {}".format(src, dest))
 
         print(f"Unzipping {src}")
         # self.decompress_zip(
         #     dest, fname=os.path.basename(src), password=self.args.password
         # )
-        
+
         self.decompress_zip(
             dest, fname=os.path.basename(src), password=None
         )
