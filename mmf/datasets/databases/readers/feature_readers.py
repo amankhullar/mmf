@@ -256,7 +256,11 @@ class LMDBFeatureReader(PaddedFasterRCNNFeatureReader):
             img_id_idx = self.image_id_indices[str(image_id).encode()]
         except (ValueError, KeyError):
             # The image id is complex or involves folder, use it directly
+            print(image_id)
             image_id = str(split).encode()
+            print(image_id)
+            print("Found an incorrect image", image_id)
+            wait=input("enter")
             img_id_idx = self.image_id_indices[image_id]
 
         with self.env.begin(write=False, buffers=True) as txn:
