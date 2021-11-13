@@ -249,6 +249,7 @@ class LMDBFeatureReader(PaddedFasterRCNNFeatureReader):
 
         split = os.path.relpath(image_file_path, self.db_path).split(".npy")[0]
 
+        print("The dictionary contains the following", self.image_id_indices)
         try:
             image_id = int(split.split("_")[-1])
             # Try fetching to see if it actually exists otherwise fall back to
