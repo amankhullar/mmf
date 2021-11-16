@@ -212,8 +212,14 @@ class MMBTModel(nn.Module):
             token_type_ids=token_type_ids,
             inputs_embeds=inputs_embeds,
         )
+        print("Input modal/ Image embedding shape is ")
+        print(input_modal_shape.shape)
+        print("Input text embedding shape is ")
+        print(txt_embeddings.shape)
 
         embedding_output = torch.cat([modal_embeddings, txt_embeddings], 1)
+        print("Embedding output shape is ")
+        print(embedding_output.shape)
 
         input_shape = embedding_output.size()[:-1]
 
@@ -227,6 +233,8 @@ class MMBTModel(nn.Module):
                 ],
                 dim=1,
             )
+        print("Attention output shape is ")
+        print(embedding_output.shape)
 
         if encoder_attention_mask is None:
             encoder_attention_mask = torch.ones(input_shape, device=device)
