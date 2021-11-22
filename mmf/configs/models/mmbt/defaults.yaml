@@ -14,6 +14,7 @@ model_config:
     # Dimension of the embedding finally returned by the text encoder
     text_hidden_size: 768
     # Used when classification head is activated
+    hidden_dropout_prob: 0.1
     num_labels: 2
     modal_encoder:
       type: resnet152
