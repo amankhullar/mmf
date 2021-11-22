@@ -62,7 +62,9 @@ class ModalEmbeddings(nn.Module):
         super().__init__()
         self.config = config
         self.encoder = encoder
-        self.proj_embeddings = nn.Linear(config.modal_hidden_size, config.hidden_size)
+        # self.proj_embeddings = nn.Linear(config.modal_hidden_size, config.hidden_size)
+        self.pca_layer = nn.Linear(config.modal_hidden_size, 200)
+        self.proj_embeddings = nn.Linear(200, config.hidden_size)
         self.position_embeddings = embeddings.position_embeddings
         self.token_type_embeddings = embeddings.token_type_embeddings
         self.word_embeddings = embeddings.word_embeddings
@@ -77,7 +79,8 @@ class ModalEmbeddings(nn.Module):
         position_ids: Optional[Tensor] = None,
         token_type_ids: Optional[Tensor] = None,
     ):
-        token_embeddings = self.proj_embeddings(self.encoder(input_modal))
+        # token_embeddings = self.proj_embeddings(self.encoder(input_modal))
+        token_embeddings = self.proj_embeddings(self.pca_layer(self.encoder(input_modal)))
         seq_length = token_embeddings.size(1)
 
         if start_token is not None:
