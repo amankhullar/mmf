@@ -31,6 +31,9 @@ from mmf.utils.modeling import get_optimizer_parameters_for_bert
 from omegaconf import II, DictConfig, OmegaConf
 from torch import Tensor, nn
 from transformers.modeling_bert import BertForPreTraining, BertPredictionHeadTransform
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+from hatespeech_bert import *
+
 
 
 # TODO: Remove after transformers package upgrade to 2.5
@@ -446,7 +449,7 @@ class MMBTForPreTraining(nn.Module):
 
         # TODO : Switch to AutoModelForPreTraining after transformers
         # package upgrade to 2.5
-        pretraining_module = BertForPreTraining.from_pretrained(
+        pretraining_module = ModelRationalLabel.from_pretrained(
             self.config.bert_model_name,
             config=self.encoder_config,
             cache_dir=os.path.join(get_mmf_cache_dir(), "distributed_{}".format(-1)),
@@ -563,7 +566,7 @@ class MMBT(BaseModel):
         model: str = "mmbt"
         # classification or pretraining
         training_head_type: str = "pretraining"
-        bert_model_name: str = "bert-base-uncased"
+        bert_model_name: str = "Hate-speech-CNERG/bert-base-uncased-hatexplain-rationale-two"
         direct_features_input: bool = False
         freeze_text: bool = False
         freeze_modal: bool = False
