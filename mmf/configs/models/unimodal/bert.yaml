@@ -1,6 +1,6 @@
 model_config:
   unimodal_text:
-    bert_model_name: bert-base-uncased
+    bert_model_name: Hate-speech-CNERG/bert-base-uncased-hatexplain-rationale-two
     text_hidden_size: 768
     num_labels: 2
     text_encoder:

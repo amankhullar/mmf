@@ -2,7 +2,7 @@ model_config:
   mmbt:
     # Either pretraining or classification
     training_head_type: pretraining
-    bert_model_name: bert-base-uncased
+    bert_model_name: Hate-speech-CNERG/bert-base-uncased-hatexplain-rationale-two
     direct_features_input: false
     freeze_text: false
     freeze_modal: false
