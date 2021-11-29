@@ -123,6 +123,7 @@ def build_model(
         config = OmegaConf.structured(config)
 
     model_name = config.model
+    print("/usr/local/lib/python3.7/dist-packages/mmf/utils/build.py in build_model \n model_name = config.mode -> ", model_name)
     model_class = registry.get_model_class(model_name)
 
     if model_class is None:
