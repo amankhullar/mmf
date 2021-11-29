@@ -24,6 +24,7 @@ from omegaconf import MISSING, OmegaConf
 from torch import Tensor, nn
 from transformers.configuration_auto import AutoConfig
 from transformers.modeling_auto import AutoModel
+from hatespeech_bert import *
 
 
 try:
@@ -538,6 +539,10 @@ class TransformerEncoder(Encoder):
                 self.module = BertModelJit.from_pretrained(
                     self.config.bert_model_name, **hf_params
                 )
+        elif self.config.bert_model_name.startswith("Hate-speech-CNERG/bert-"):
+            self.module = ModelRationalLabel.from_pretrained(
+                self.config.bert_model_name, **hf_params
+            )
         else:
             if should_random_init:
                 self.module = AutoModel.from_config(**hf_params)

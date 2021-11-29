@@ -23,11 +23,12 @@ class BertPooler(nn.Module):
 
 
 class ModelRationalLabel(BertPreTrainedModel):
-    def __init__(self, model_name, config, cache_dir):
+    def __init__(self, config):
         super().__init__(config)
+        print("ModelRationalLabel")
         self.num_labels = 2
         self.impact_factor = 0.8
-        self.bert = BertModel(model_name, config, cache_dir, add_pooling_layer=False)
+        self.bert = BertModel(config, add_pooling_layer=False)
         self.bert_pooler = BertPooler(config)
         self.token_dropout = nn.Dropout(0.1)
         self.token_classifier = nn.Linear(config.hidden_size, 2)

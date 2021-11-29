@@ -10,7 +10,6 @@ from copy import deepcopy
 from dataclasses import dataclass
 from typing import Dict, Optional, Union
 
-import torch
 from mmf.common.registry import registry
 from mmf.models.base_model import BaseModel
 from mmf.models.interfaces.mmbt import MMBTGridHMInterface
@@ -29,10 +28,9 @@ from mmf.utils.checkpoint import load_pretrained_model
 from mmf.utils.configuration import get_mmf_cache_dir
 from mmf.utils.modeling import get_optimizer_parameters_for_bert
 from omegaconf import II, DictConfig, OmegaConf
-from torch import Tensor, nn
-from transformers.modeling_bert import BertForPreTraining, BertPredictionHeadTransform
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
-from hatespeech_bert import *
+from torch import Tensor
+from transformers.modeling_bert import BertPredictionHeadTransform
+from mmf.modules.hatespeech_bert import *
 
 
 
