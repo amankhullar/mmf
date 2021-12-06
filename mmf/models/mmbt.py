@@ -163,6 +163,9 @@ class MMBTModel(nn.Module):
         self.num_hidden_layers = config.num_hidden_layers
         self.transformer = transformer
         self.modal_encoder = ModalEmbeddings(config, encoder, transformer.embeddings)
+        # For weighted concatenation
+        self.img_wt = torch.nn.Parameter(torch.rand(1,1))
+        self.txt_wt = torch.nn.Parameter(torch.rand(1,1))
 
     def forward(
         self,
@@ -216,7 +219,9 @@ class MMBTModel(nn.Module):
             inputs_embeds=inputs_embeds,
         )
 
-        embedding_output = torch.cat([modal_embeddings, txt_embeddings], 1)
+        # For weighted concatenation
+        embedding_output = torch.cat([self.img_wt*modal_embeddings, self.txt_wt*txt_embeddings], 1)
+        # embedding_output = torch.cat([modal_embeddings, txt_embeddings], 1)
 
         input_shape = embedding_output.size()[:-1]
 
